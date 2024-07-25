@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './stylesheets/styles.css'
+import Navbar from './components/Navbar.js'
+import Pricing from './pages/Pricing.js'
+import About from './pages/About.js'
+import Home from './pages/Home.js'
 
-function App() {
+export default function App() {
+
+  let component;
+
+  switch (window.location.pathname) {
+    case "/":
+      component = <Home />
+      break
+    case "/pricing":
+      component = <Pricing />
+      break
+    case "/about":
+      component = <About />
+      break
+    default:
+      component = <Home />
+      break
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        {component} 
+      </div>
+    </>
   );
 }
-
-export default App;
